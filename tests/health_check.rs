@@ -1,7 +1,7 @@
 use sqlx::{Connection, Executor, PgConnection, PgPool};
-use uuid::Uuid;
 use std::net::TcpListener;
-use zero2prod::configuration::{DatabaseSettings, get_configuration};
+use uuid::Uuid;
+use zero2prod::configuration::{get_configuration, DatabaseSettings};
 
 #[actix_rt::test]
 async fn health_check_works() {
