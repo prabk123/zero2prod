@@ -1,3 +1,4 @@
+use env_logger::Env;
 use sqlx::PgPool;
 use std::net::TcpListener;
 use zero2prod::configuration::get_configuration;
@@ -12,6 +13,8 @@ async fn main() -> std::io::Result<()> {
     let address = format!("127.0.0.1:{}", configuration.application_port);
     let startup_message = format!("> Starting server on http://{}", address);
     let listener = TcpListener::bind(address).expect("Failed to bind random port.");
+
+    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
 
     println!("{}", startup_message);
     run(listener, connection_pool)?.await
