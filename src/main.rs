@@ -14,7 +14,7 @@ async fn main() -> std::io::Result<()> {
     let startup_message = format!("> Starting server on http://{}", address);
     let listener = TcpListener::bind(address).expect("Failed to bind random port.");
 
-    let subscriber = get_subscriber("zero2prod".into(), "info".into());
+    let subscriber = get_subscriber("zero2prod".into(), "info".into(), std::io::stdout);
     init_subscriber(subscriber);
 
     println!("{}", startup_message);
